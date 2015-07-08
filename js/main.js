@@ -6,11 +6,11 @@ function handleFiles(files) {
 	}
 }
 
-function getAsText(readFile) {
+function getAsText(fileToRead) {
 	var reader = new FileReader();
 	reader.onload = loadHandler;
 	reader.onerror = errorHandler;
-	reader.readAsText(readFile);
+	reader.readAsText(fileToRead);
 }
 
 function loadHandler(event) {
@@ -19,13 +19,13 @@ function loadHandler(event) {
 }
 
 function processData(csv) {
-	var all = csv.split(/\r\n|\n/);
+	var allTextLines = csv.split(/\r\n|\n/);
 	var lines = [];
-	while (all.length) {
-		lines.push(all.shift().split(','));
+	while (allTextLines.length) {
+		lines.push(allTextLines.shift().split(','));
 	}
 	console.log(lines);
-	drawoutput(lines);
+	drawOutput(lines);
 }
 
 function errorHandler(evt) {
